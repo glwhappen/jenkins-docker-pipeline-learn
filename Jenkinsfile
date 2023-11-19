@@ -11,17 +11,18 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-            steps {
-                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
-            }
-        }
+//         stage('Build') {
+//             steps {
+//                 sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+//             }
+//         }
         stage('Deploy Docker Container') {
             steps {
                 script {
-                    // 停止旧容器并部署新容器
-                    sh "docker stop ${CONTAINER_NAME} || true && docker rm ${CONTAINER_NAME} || true"
-                    sh "docker run -d -p ${PORT}:5000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}"
+                    // 停止并移除旧的服务
+                    sh "docker-compose down --build"
+                    // 启动服务
+                    sh "docker-compose up -d"
                 }
             }
         }
