@@ -26,8 +26,11 @@ pipeline {
                 }
             }
         }
-        stage('cp nginx.conf') {
+        stage('Update nginx config') {
             steps {
+                // 删除容器内的现有nginx配置文件
+                sh "docker exec ${CONTAINER_NAME}_nginx rm /etc/nginx/nginx.conf"
+                // 复制新的nginx配置文件到容器
                 sh "docker cp nginx.conf ${CONTAINER_NAME}_nginx:/etc/nginx/nginx.conf"
             }
         }
