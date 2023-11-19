@@ -26,6 +26,11 @@ pipeline {
                 }
             }
         }
+        stage('cp nginx.conf') {
+            steps {
+                sh "docker cp nginx.conf ${CONTAINER_NAME}_nginx:/etc/nginx/nginx.conf"
+            }
+        }
         stage('Get Port') {
             steps {
                 script {
