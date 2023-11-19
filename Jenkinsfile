@@ -20,9 +20,9 @@ pipeline {
             steps {
                 script {
                     // 停止并移除旧的服务
-                    sh "docker-compose down --build"
+                    sh "docker-compose down"
                     // 启动服务
-                    sh "docker-compose up -d"
+                    sh "docker-compose up --build -d"
                 }
             }
         }
