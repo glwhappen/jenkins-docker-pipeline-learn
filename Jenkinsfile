@@ -3,9 +3,10 @@ pipeline {
 
     environment {
         // 定义镜像名称的基础部分
-        IMAGE_NAME = "app_flask_${env.BUILD_NUMBER}" // -${env.GIT_COMMIT}
-        IMAGE_TAG = "${jenkins}"
-        CONTAINER_NAME = "my-flask-app"
+        NAME = "app_flask"
+        IMAGE_NAME = "${NAME}_${env.BUILD_NUMBER}" // -${env.GIT_COMMIT}
+        IMAGE_TAG = "jenkins"
+        CONTAINER_NAME = "${IMAGE_NAME}_jenkins"
     }
 
     stages {
