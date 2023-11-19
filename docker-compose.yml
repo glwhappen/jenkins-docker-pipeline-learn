@@ -11,5 +11,5 @@ services:
     build: ./nginx
     image: "${IMAGE_NAME}_nginx"
     ports:
-      - "${PORT}:80"
+      - "${PORT}:88"
     container_name: "${CONTAINER_NAME}_nginx"
